@@ -3,6 +3,7 @@
 import numpy as np
 from numpy import pi
 from qiskit import *
+import timeit
 
 
 #_____________________________________________________________________________________________________________________________________________________________________________________________________________________                                                                    
@@ -77,6 +78,8 @@ bs2 = dec_to_bin(int(input("Enter Second Integer(Less than 500) to add: ")))#|an
 #bs means binary string                                                     #|and for classical storage register in orde to store output so 9 qubits should be encouraged to perform operation
 lenbs1 = len(bs1)
 lenbs2 = len(bs2)
+#Code timer starts 
+start = timeit.default_timer()
                                                              #|1.Here length of both Binary strings are 
 if (lenbs1 or lenbs2 )> 9 :                                  #|compared beacause Quatntum fourier transform of same length of binary string 
     print("The integer you input is greater that 9 bits ") #|helps better in computation rather than differnt length binary strings.
@@ -109,15 +112,18 @@ while(int(mx)!= 0):
     result = execute(Qcirc, backend=Aer.get_backend('qasm_simulator'),
                     shots=2).result().get_counts(Qcirc.name)
     mx = list(result.keys())[0]
-Qcirc.measure( classic_reg)
+Qcirc.measure( ancila,classic_reg)
 result = execute(Qcirc, backend=Aer.get_backend('qasm_simulator'),
             shots=2).result().get_counts(Qcirc.name)
 #counts = counts = result.get_counts()
 print(Qcirc.draw())
 ans = int(next(iter(result)), 2)
 print(ans)
-
-
+#Code Execution timer ends
+stop = timeit.default_timer()
+execution_time = stop - start
+ 
+print("Program Executed in "+str(execution_time),end = "seconds") # It returns time in second
 
 
 
