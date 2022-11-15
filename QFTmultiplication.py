@@ -1,5 +1,5 @@
 
-#QFT Quatnum addition Algorithm Syed Affan Hussain 
+#QFT Iterated Quantnum Addition Algorithm Syed Affan Hussain 
 import numpy as np
 from numpy import pi
 from qiskit import *
